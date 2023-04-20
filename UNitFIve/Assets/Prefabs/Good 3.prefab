@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d833f0e6fd557e44a7643f37f9b7c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointValue: 3
+  explosionParticle: {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
 --- !u!54 &1856801329991843338
 Rigidbody:
   m_ObjectHideFlags: 0
