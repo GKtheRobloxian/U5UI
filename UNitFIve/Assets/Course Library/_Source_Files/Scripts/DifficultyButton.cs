@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class DifficultyButton : MonoBehaviour
 {
     public float difficulty;
+    public int healthReduction;
     Button button;
     GameManager manage;
 
@@ -18,7 +19,7 @@ public class DifficultyButton : MonoBehaviour
 
     void SetDifficulty()
     {
-        manage.StartGame(difficulty);
+        manage.StartGame(difficulty, healthReduction);
     }
 
     // Update is called once per frame

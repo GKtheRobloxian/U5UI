@@ -10,13 +10,19 @@ public class Target : MonoBehaviour
     float xRange = 4;
     float ySpawnPos = -6;
     public int pointValue;
+    public int damage;
     public ParticleSystem explosionParticle;
+    public AudioClip goodClip;
+    public AudioClip badClip;
+    public AudioClip fallClip;
+    AudioSource audios;
     Rigidbody targetRb;
     GameManager manage;
 
     // Start is called before the first frame update
     void Start()
     {
+        audios = GetComponent<AudioSource>();
         manage = GameObject.Find("Game Manager").GetComponent<GameManager>();
         targetRb = GetComponent<Rigidbody>();
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
@@ -39,24 +45,37 @@ public class Target : MonoBehaviour
     {
         if (manage.isGameActive)
         {
+            if (gameObject.CompareTag("Bad"))
+            {
+                manage.LifeUpdate(damage);
+                audios.PlayOneShot(badClip);
+            }
+            else if (!gameObject.CompareTag("Bad"))
+            {
+                audios.PlayOneShot(goodClip);
+                if (gameObject.CompareTag("Godly"))
+                {
+                    manage.LifeUpdate(-damage);
+                }
+            }
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             manage.UpdateScore(pointValue);
-            if (gameObject.CompareTag("Bad"))
-            {
-                manage.GameOver();
-            }
         }    
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == GameObject.Find("Sensor"))
         {
-            Destroy(gameObject);
             if (!gameObject.CompareTag("Bad"))
             {
-                manage.GameOver();
+                manage.LifeUpdate(damage);
             }
+            else
+            {
+                audios.PlayOneShot(badClip);
+            }
+            Destroy(gameObject);
         }
     }
 
