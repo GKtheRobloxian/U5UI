@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,11 +18,14 @@ public class GameManager : MonoBehaviour
     public GameObject restart;
     public GameObject titleScreen;
     public GameObject particle;
+    public GameObject pauseButton;
     public Slider healthBar;
     public Image fill;
     public int maxHealth;
     float currentMaxHealth;
     float damageTaken = 0;
+    GameObject pauseScreen;
+    public bool paused;
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +45,13 @@ public class GameManager : MonoBehaviour
         healthBar.value = 0;
         healthBar.fillRect.gameObject.SetActive(false);
         currentMaxHealth = healthBar.maxValue;
-        Debug.Log(currentMaxHealth);
+        pauseButton.SetActive(true);
+
     }
 
     IEnumerator SpawnTarget()
     {
-        while (isGameActive)
+        while (isGameActive && !paused)
         {
             yield return new WaitForSeconds(spawnRate + Random.Range(-randomSpawnRange, randomSpawnRange));
             int index = Random.Range(0, targets.Count);
@@ -60,6 +65,7 @@ public class GameManager : MonoBehaviour
         spawnRate -= Time.deltaTime * 0.002f;
         GameOver();
         SmoothHealthBar();
+        Pausing();
     }
 
     public void GameOver()
@@ -70,6 +76,29 @@ public class GameManager : MonoBehaviour
             isGameActive = false;
             restart.SetActive(true);
 
+        }
+    }
+
+    public void Pausing()
+    {
+
+        pauseScreen = GameObject.Find("Pause Screen");
+        if (pauseScreen)
+        {
+            paused = true;
+        }
+        else
+        {
+            paused = false;
+        }
+
+        if (paused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
     }
 
@@ -88,7 +117,6 @@ public class GameManager : MonoBehaviour
     {
         healthBar.fillRect.gameObject.SetActive(true);
         damageTaken += healthReduce;
-        Debug.Log(damageTaken);
         if (damageTaken < 0)
         {
             damageTaken = 0;

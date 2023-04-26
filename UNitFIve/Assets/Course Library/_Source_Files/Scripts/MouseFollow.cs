@@ -4,27 +4,56 @@ using UnityEngine;
 
 public class MouseFollow : MonoBehaviour
 {
-
-    public GameObject blue;
+    GameManager manage;
+    TrailRenderer blue;
     Vector3 mousePos;
     Camera cameras;
-    Vector3 worldPos;
+    BoxCollider col;
+    bool swiping = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        cameras = GetComponent<Camera>();
+        cameras = Camera.main;
+        blue = GetComponent<TrailRenderer>();
+        col = GetComponent<BoxCollider>();
+        blue.enabled = false;
+        col.enabled = false;
+
+        manage = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (manage.isGameActive)
         {
-            mousePos = Input.mousePosition;
-            mousePos.z = 1.5f;
-            worldPos = cameras.ScreenToWorldPoint(mousePos);
-            Instantiate(blue, worldPos, Quaternion.identity);
+            if (Input.GetMouseButton(0))
+            {
+                swiping = true;
+                UpdateComponents();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                swiping = false;
+                UpdateComponents();
+            }
+            if (swiping)
+            {
+                UpdateMousePosition();
+            }
         }
+    }
+
+    void UpdateMousePosition()
+    {
+        mousePos = cameras.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
+        transform.position = mousePos;
+    }
+
+    void UpdateComponents()
+    {
+        blue.enabled = swiping;
+        col.enabled = swiping;
     }
 }

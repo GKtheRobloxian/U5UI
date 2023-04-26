@@ -6,7 +6,7 @@ public class Target : MonoBehaviour
 {
     float minSpeed = 12;
     float maxSpeed = 16;
-    float maxTorque = 10;
+    float maxTorque = 60;
     float xRange = 4;
     float ySpawnPos = -6;
     public int pointValue;
@@ -41,9 +41,9 @@ public class Target : MonoBehaviour
     {
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        if (manage.isGameActive)
+        if (manage.isGameActive && !GameObject.Find("Game Manager").GetComponent<GameManager>().paused && Input.GetButton("Fire1"))
         {
             if (gameObject.CompareTag("Bad"))
             {
@@ -67,12 +67,9 @@ public class Target : MonoBehaviour
     {
         if (other.gameObject == GameObject.Find("Sensor"))
         {
-            if (!gameObject.CompareTag("Bad"))
+            if (!gameObject.CompareTag("Bad") && !GameObject.Find("Game Manager").GetComponent<GameManager>().paused)
             {
                 manage.LifeUpdate(damage);
-            }
-            else
-            {
                 audios.PlayOneShot(badClip);
             }
             Destroy(gameObject);
