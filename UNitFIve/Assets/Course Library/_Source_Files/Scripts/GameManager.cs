@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour
     float currentMaxHealth;
     float damageTaken = 0;
     GameObject pauseScreen;
+    int konamiCountdown = 0;
+    int ultrakillCountdown = 0;
     public bool paused;
+    bool spawning;
+    float spawnRateDecrease = 0.002f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
         healthBar.fillRect.gameObject.SetActive(false);
         currentMaxHealth = healthBar.maxValue;
         pauseButton.SetActive(true);
+        spawnRateDecrease /= (difficulty/0.5f);
 
     }
 
@@ -53,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         while (isGameActive && !paused)
         {
+            spawning = true;
             yield return new WaitForSeconds(spawnRate + Random.Range(-randomSpawnRange, randomSpawnRange));
             int index = Random.Range(0, targets.Count);
             Instantiate(targets[index]);
@@ -62,10 +68,100 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnRate -= Time.deltaTime * 0.002f;
+        spawnRate -= Time.deltaTime * spawnRateDecrease;
         GameOver();
         SmoothHealthBar();
         Pausing();
+        KonamiCode();
+        UltrakillCode();
+    }
+
+    void UltrakillCode()
+    {
+        if (spawning == false && ultrakillCountdown == 0 && Input.GetKeyDown(KeyCode.U))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 1 && Input.GetKeyDown(KeyCode.L))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 2 && Input.GetKeyDown(KeyCode.T))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 3 && Input.GetKeyDown(KeyCode.R))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 4 && Input.GetKeyDown(KeyCode.A))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 5 && Input.GetKeyDown(KeyCode.K))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 6 && Input.GetKeyDown(KeyCode.I))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 7 && Input.GetKeyDown(KeyCode.L))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 8 && Input.GetKeyUp(KeyCode.L))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 9 && Input.GetKeyDown(KeyCode.L))
+        {
+            StartGame(5, 3);
+        }
+    }
+
+    void KonamiCode()
+    {
+        if (spawning == false && konamiCountdown == 0 && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 1 && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 2 && Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 3 && Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 4 && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 5 && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 6 && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 7 && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 8 && Input.GetKeyDown(KeyCode.B))
+        {
+            konamiCountdown++;
+        }
+        if (spawning == false && konamiCountdown == 9 && Input.GetKeyDown(KeyCode.A))
+        {
+            StartGame(3, 2);
+        }
     }
 
     public void GameOver()

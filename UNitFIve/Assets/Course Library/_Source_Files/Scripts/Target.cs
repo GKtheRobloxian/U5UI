@@ -18,6 +18,8 @@ public class Target : MonoBehaviour
     AudioSource audios;
     Rigidbody targetRb;
     GameManager manage;
+    ParticleSystem stylePoints;
+    ParticleSystem godParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,8 @@ public class Target : MonoBehaviour
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(new Vector3 (RandomTorque(), RandomTorque(), RandomTorque()));
         transform.position = RandomSpawnPos();
+        stylePoints = GameObject.Find("Style Particles").GetComponent<ParticleSystem>();
+        godParticles = GameObject.Find("Godly Particles").GetComponent<ParticleSystem>();
     }
     Vector3 RandomForce()
     {
@@ -63,6 +67,21 @@ public class Target : MonoBehaviour
             manage.UpdateScore(pointValue);
         }    
     }
+
+    private void OnMouseDown()
+    {
+        if (!gameObject.CompareTag("Bad"))
+        {
+            stylePoints.Play();
+            manage.UpdateScore(5);
+            if (gameObject.CompareTag("Godly"))
+            {
+                godParticles.Play();
+                manage.UpdateScore(5);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == GameObject.Find("Sensor"))

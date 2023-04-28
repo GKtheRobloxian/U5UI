@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: 3
   damage: 1
-  explosionParticle: {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
+  explosionParticle: {fileID: 2088871590894813759, guid: 077e13e5bb34f3446bc582e2f925ced2, type: 3}
   goodClip: {fileID: 8300000, guid: 4968dc45aae1be143b567e82c9c1d5f5, type: 3}
   badClip: {fileID: 8300000, guid: fc3975b01e7b3204aa6fc72bc5bfdeb2, type: 3}
   fallClip: {fileID: 8300000, guid: fc3975b01e7b3204aa6fc72bc5bfdeb2, type: 3}

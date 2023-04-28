@@ -8,7 +8,6 @@ public class MouseFollow : MonoBehaviour
     TrailRenderer blue;
     Vector3 mousePos;
     Camera cameras;
-    BoxCollider col;
     bool swiping = false;
 
     // Start is called before the first frame update
@@ -16,9 +15,7 @@ public class MouseFollow : MonoBehaviour
     {
         cameras = Camera.main;
         blue = GetComponent<TrailRenderer>();
-        col = GetComponent<BoxCollider>();
         blue.enabled = false;
-        col.enabled = false;
 
         manage = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
@@ -54,6 +51,5 @@ public class MouseFollow : MonoBehaviour
     void UpdateComponents()
     {
         blue.enabled = swiping;
-        col.enabled = swiping;
     }
 }
