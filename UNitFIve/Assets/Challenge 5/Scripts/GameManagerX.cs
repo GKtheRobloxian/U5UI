@@ -16,7 +16,7 @@ public class GameManagerX : MonoBehaviour
     public List<GameObject> targetPrefabs;
 
     private int score;
-    private float spawnRate = 2.5f;
+    private float spawnRate = 1.5f;
     float timer = 60f;
     int timerFloor;
     public bool isGameActive;
@@ -26,9 +26,9 @@ public class GameManagerX : MonoBehaviour
     private float minValueY = -3.75f; //  y value of the center of the bottom-most square
     
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
-    public void StartGame()
+    public void StartGame(int difficulty)
     {
-        spawnRate /= 5;
+        spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
@@ -92,8 +92,16 @@ public class GameManagerX : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime;
-
+        if (isGameActive)
+        {
+            timer -= Time.deltaTime;
+            timerFloor = Mathf.FloorToInt(timer);
+            timeText.text = "Time: " + timerFloor;
+        }
+        if (timer <= 0)
+        {
+            GameOver();
+        }
     }
 
     void UpdateTime(int time)

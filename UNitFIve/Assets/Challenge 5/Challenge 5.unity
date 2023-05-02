@@ -908,7 +908,7 @@ MonoBehaviour:
   gameOverText: {fileID: 919200876}
   titleScreen: {fileID: 92482018}
   restartButton: {fileID: 1902351379}
-  timeText: {fileID: 0}
+  timeText: {fileID: 1512321722}
   targetPrefabs:
   - {fileID: 5817859361576445215, guid: 9cc97627ed18b449695d703ab651f5cd, type: 3}
   - {fileID: 1996815852551487035, guid: 11bccc60726374a918b5c73120d47ab3, type: 3}
@@ -1319,7 +1319,7 @@ GameObject:
   - component: {fileID: 1512321723}
   - component: {fileID: 1512321722}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
