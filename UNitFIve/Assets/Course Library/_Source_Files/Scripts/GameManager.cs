@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using System.Diagnostics;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
     bool spawning;
     float spawnRateDecrease = 0.002f;
 
+    public AudioSource musicPlayer;
+    public AudioClip secretMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
         healthBar.fillRect.gameObject.SetActive(false);
         currentMaxHealth = healthBar.maxValue;
         pauseButton.SetActive(true);
-        spawnRateDecrease /= (difficulty/0.5f);
+        spawnRateDecrease /= (difficulty/3.5f);
 
     }
 
@@ -68,6 +72,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UnityEngine.Debug.Log(spawnRate);
         spawnRate -= Time.deltaTime * spawnRateDecrease;
         GameOver();
         SmoothHealthBar();
@@ -117,6 +122,8 @@ public class GameManager : MonoBehaviour
         if (spawning == false && ultrakillCountdown == 9 && Input.GetKeyDown(KeyCode.L))
         {
             StartGame(5, 3);
+            musicPlayer.clip = secretMusic;
+            musicPlayer.Play();
         }
     }
 
@@ -160,7 +167,9 @@ public class GameManager : MonoBehaviour
         }
         if (spawning == false && konamiCountdown == 9 && Input.GetKeyDown(KeyCode.A))
         {
-            StartGame(3, 2);
+            StartGame(3.5f, 2);
+            musicPlayer.clip = secretMusic;
+            musicPlayer.Play();
         }
     }
 
