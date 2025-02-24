@@ -70,7 +70,7 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameObject.CompareTag("Bad"))
+        if (!gameObject.CompareTag("Bad") && !GameObject.Find("Game Manager").GetComponent<GameManager>().paused && manage.isGameActive)
         {
             stylePoints.Play();
             manage.UpdateScore(5);

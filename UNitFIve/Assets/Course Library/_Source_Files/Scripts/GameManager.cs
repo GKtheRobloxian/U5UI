@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log(spawnRate);
         spawnRate -= Time.deltaTime * spawnRateDecrease;
         GameOver();
         SmoothHealthBar();
@@ -83,31 +82,31 @@ public class GameManager : MonoBehaviour
 
     void UltrakillCode()
     {
-        if (spawning == false && ultrakillCountdown == 0 && Input.GetKeyDown(KeyCode.U))
+        if (spawning == false && ultrakillCountdown == 0 && Input.GetKeyDown(KeyCode.D) && Input.GetKey(KeyCode.LeftShift))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 1 && Input.GetKeyDown(KeyCode.L))
+        if (spawning == false && ultrakillCountdown == 1 && Input.GetKeyDown(KeyCode.O))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 2 && Input.GetKeyDown(KeyCode.T))
+        if (spawning == false && ultrakillCountdown == 2 && Input.GetKeyDown(KeyCode.Space))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 3 && Input.GetKeyDown(KeyCode.R))
+        if (spawning == false && ultrakillCountdown == 3 && Input.GetKeyDown(KeyCode.Y))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 4 && Input.GetKeyDown(KeyCode.A))
+        if (spawning == false && ultrakillCountdown == 4 && Input.GetKeyDown(KeyCode.O))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 5 && Input.GetKeyDown(KeyCode.K))
+        if (spawning == false && ultrakillCountdown == 5 && Input.GetKeyDown(KeyCode.U))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 6 && Input.GetKeyDown(KeyCode.I))
+        if (spawning == false && ultrakillCountdown == 6 && Input.GetKeyDown(KeyCode.Space))
         {
             ultrakillCountdown++;
         }
@@ -115,11 +114,103 @@ public class GameManager : MonoBehaviour
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 8 && Input.GetKeyUp(KeyCode.L))
+        if (spawning == false && ultrakillCountdown == 8 && Input.GetKeyDown(KeyCode.O))
         {
             ultrakillCountdown++;
         }
-        if (spawning == false && ultrakillCountdown == 9 && Input.GetKeyDown(KeyCode.L))
+        if (spawning == false && ultrakillCountdown == 9 && Input.GetKeyDown(KeyCode.V))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 10 && Input.GetKeyDown(KeyCode.E))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 11 && Input.GetKeyDown(KeyCode.Space))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 12 && Input.GetKeyDown(KeyCode.T))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 13 && Input.GetKeyDown(KeyCode.H))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 14 && Input.GetKeyUp(KeyCode.E))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 15 && Input.GetKeyDown(KeyCode.Space))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 16 && Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftShift))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 17 && Input.GetKeyDown(KeyCode.I))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 18 && Input.GetKeyDown(KeyCode.T))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 19 && Input.GetKeyDown(KeyCode.Y))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 20 && Input.GetKeyDown(KeyCode.Space))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 21 && Input.GetKeyDown(KeyCode.Y))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 22 && Input.GetKeyDown(KeyCode.O))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 23 && Input.GetKeyUp(KeyCode.U))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 24 && Input.GetKeyDown(KeyCode.Space))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 25 && Input.GetKeyDown(KeyCode.L))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 26 && Input.GetKeyDown(KeyCode.I))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 27 && Input.GetKeyDown(KeyCode.V))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 28 && Input.GetKeyDown(KeyCode.E))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 29 && Input.GetKeyDown(KeyCode.Space))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 30 && Input.GetKeyDown(KeyCode.I))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 31 && Input.GetKeyDown(KeyCode.N))
+        {
+            ultrakillCountdown++;
+        }
+        if (spawning == false && ultrakillCountdown == 32 && Input.GetKeyDown(KeyCode.Slash) && Input.GetKey(KeyCode.LeftShift))
         {
             StartGame(5, 3);
             musicPlayer.clip = secretMusic;
