@@ -9,6 +9,7 @@ using System.Diagnostics;
 
 public class GameManager : MonoBehaviour
 {
+    float spawnRateInit = 1.5f;
     float spawnRate = 1.5f;
     public float randomSpawnRange;
     int score;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         isGameActive = true;
         titleScreen.gameObject.SetActive(false);
-        spawnRate /= difficulty;
+        spawnRate = spawnRateInit/difficulty;
         randomSpawnRange /= difficulty;
         healthBar.maxValue = maxHealth - healthReduction;
         healthBar.value = 0;
